@@ -13,9 +13,8 @@ void main() {
   configureDependencies();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-
       child: const MyApp(),
+      create: (context) => ThemeProvider(),
     ),
   );
 }

@@ -14,5 +14,10 @@ class ArticleRepoImpl implements ArticleRepo {
     return onlineDataSource.getArticlesResponse(sourceId);
   }
 
+  @override
+  Future<ArticleResponseModel> getArticlesResponseForSearch(String searchKeyWord) {
+    return onlineDataSource.getArticlesResponseForSearch(searchKeyWord);
+  }
+
 
 }

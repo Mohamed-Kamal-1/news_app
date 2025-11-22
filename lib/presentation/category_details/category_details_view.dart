@@ -35,9 +35,9 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
               child: Text(state.errorMessage ?? 'something went wrong'),
             );
           } else if (state is CategorySuccessState) {
-            return NewsSourcesWidget(state.sourcesList ?? []);
+            return NewsSourcesWidget(state.sourcesList ?? const []);
           } else if (state is CategoryLoadingState) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return Container(color: Colors.red);
         },

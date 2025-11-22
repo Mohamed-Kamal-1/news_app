@@ -17,3 +17,4 @@ class NewsSuccessState extends NewsState {
 
   NewsSuccessState({this.articleList});
 }
+

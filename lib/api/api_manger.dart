@@ -1,8 +1,8 @@
-
 import 'package:dio/dio.dart';
 
 // import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:news_app/api/model/respons/news_article/Article_dto.dart';
 import 'package:news_app/api/model/respons/news_article/Article_response_dto.dart';
 import 'package:news_app/api/model/respons/news_source/Source_response_dto.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -34,31 +34,48 @@ class ApiManger {
     return _apiManger!;
   }
 
-  static const String _baseUrl = 'https://newsapi.org/';
-  static const String _apiKey = '3f1fd1414c284e95bb0c3527a127fc73';
+  static const String _baseUrl = 'https://newsapi.org/v2';
+
+  // static const String _apiKey = '3f1fd1414c284e95bb0c3527a127fc73';
+  static const String _apiKey = 'e9b8dbc2094c48daa5c6f3859bc1d339';
 
   Future<SourceResponseDto> getNewsSources(String categoryId) async {
-    Map<String, String> parameter = {'apiKey': _apiKey, "category" : categoryId};
-        // Uri uri = Uri.http(_baseUrl, Endpoints.sourcesApi,parameter);
-    Response response = await dio.get(Endpoints.sourcesApi,queryParameters: parameter);
-    SourceResponseDto sourceResponse = SourceResponseDto.fromJson(response.data);
+    Map<String, String> parameter = {'apiKey': _apiKey, "category": categoryId};
+    Response response = await dio.get(
+      Endpoints.sourcesApi,
+      queryParameters: parameter,
+    );
+    SourceResponseDto sourceResponse = SourceResponseDto.fromJson(
+      response.data,
+    );
     return sourceResponse;
   }
 
-  Future<ArticleResponseDto> getArticles(String sourceId)async{
-    Map<String, String> parameter = {'apiKey': _apiKey, "sources" : sourceId};
-    Response response =  await dio.get(Endpoints.articlesApi,queryParameters: parameter);
-    print("===================================");
-    print(response.data);
-    print("===================================");
-
-
-    ArticleResponseDto articleResponse = ArticleResponseDto.fromJson(response.data);
+  Future<ArticleResponseDto> getArticles(String sourceId) async {
+    Map<String, String> parameter = {'apiKey': _apiKey, "sources": sourceId};
+    Response response = await dio.get(
+      Endpoints.articlesApi,
+      queryParameters: parameter,
+    );
+    ArticleResponseDto articleResponse = ArticleResponseDto.fromJson(
+      response.data,
+    );
 
     return articleResponse;
   }
 
+  Future<ArticleResponseDto> searchForArticles(String searchKeyWord) async {
+    Map<String, String> parameter = {'q': searchKeyWord, 'apiKey': _apiKey};
+    Response response = await dio.get(
+      Endpoints.articlesApi,
+      queryParameters: parameter,
+    );
 
+    ArticleResponseDto articleResponse = ArticleResponseDto.fromJson(
+      response.data,
+    );
+    return articleResponse;
+  }
 
   // static Future<SourceResponse> getSources() async {
   //   try {

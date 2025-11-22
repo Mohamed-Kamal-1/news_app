@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/di/di.dart';
+import 'package:news_app/presentation/home/widgets/cubit/home_view_model.dart';
 import 'package:news_app/presentation/home/widgets/custom_scaffold.dart';
+import 'package:news_app/presentation/home/widgets/search_widget.dart';
 
 import '../../domain/model/category/category_model.dart';
 import '../category_details/category_details_view.dart';
@@ -13,18 +16,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  CategoryModel? categoryModel;
+  late HomeViewModel? homeViewModel;
 
   @override
   void initState() {
     super.initState();
+    homeViewModel = getIt.get<HomeViewModel>();
   }
-
-  CategoryModel? categoryModel;
 
   @override
   Widget build(BuildContext context) {
-
-
     return CustomScaffold(
       onHomeClick,
       title: categoryModel == null ? 'Home' : categoryModel?.title ?? "",
@@ -33,7 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
           : [
               IconButton(
                 onPressed: () {
-                  // todo navigate to search screen
+                  showSearch(
+                    context: context,
+                    delegate: SearchWidget(homeViewModel: homeViewModel!),
+                  );
                 },
                 icon: Icon(Icons.search),
               ),

@@ -1,6 +1,6 @@
 class Endpoints{
 
-  static const String sourcesApi = 'v2/top-headlines/sources';
-  static const String articlesApi = 'v2/everything';
+  static const String sourcesApi = '/top-headlines/sources';
+  static const String articlesApi = '/everything';
   Endpoints._();
 }

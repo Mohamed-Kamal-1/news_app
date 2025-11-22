@@ -9,13 +9,14 @@ class NewsListViewModel extends Cubit<NewsState> {
 
   NewsListViewModel(this.articleRepo) : super(NewsInitialState());
 
+  // int ChangeSeletedIndex(){
+  //
+  // }
+
   Future<void> getArticle(String sourceId) async {
     try {
       emit(NewsLoadingState());
       var response = await articleRepo.getArticle(sourceId);
-      print("===================");
-      print(response.status);
-      print("===================");
 
       if (response.status == 'ok') {
         emit(NewsSuccessState(articleList: response.articles));
@@ -26,5 +27,6 @@ class NewsListViewModel extends Cubit<NewsState> {
     } catch (e) {
       emit(NewsErrorState(errorMessage: e.toString()));
     }
+
   }
 }
