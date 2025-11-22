@@ -5,16 +5,20 @@ import 'package:news_app/domain/model/article/article.dart';
 
 class FullViewArticle extends StatelessWidget {
   final Article article;
+  final String? sourceId;
 
-  const FullViewArticle({super.key, required this.article});
+  const FullViewArticle({super.key, required this.article, this.sourceId});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
-        leading: IconButton( onPressed: () => Navigator.pop(context) ,icon:Icon(Icons.arrow_back_ios)),
-        title: Text("abcNEWS"),
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_ios),
+        ),
+        title: Text(sourceId!),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -43,7 +47,7 @@ class FullViewArticle extends StatelessWidget {
             Row(
               spacing: 5,
               children: [
-                Text('By',style: TextStyle(color: AppColor.grey),),
+                Text('By', style: TextStyle(color: AppColor.grey)),
                 Column(
                   children: [
                     Text(
@@ -54,9 +58,7 @@ class FullViewArticle extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Container(color: AppColor.blue,
-                      width: 50,
-                    ),
+                    Container(color: AppColor.blue, width: 50),
                   ],
                 ),
               ],

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 
 // import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
-import 'package:news_app/api/model/respons/news_article/Article_dto.dart';
 import 'package:news_app/api/model/respons/news_article/Article_response_dto.dart';
 import 'package:news_app/api/model/respons/news_source/Source_response_dto.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';

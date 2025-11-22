@@ -6,9 +6,9 @@ import '../../domain/model/category/category_model.dart';
 typedef OnCategoryClick = void Function(CategoryModel category);
 
 class CategoryView extends StatelessWidget {
-  OnCategoryClick onCategoryClick;
+  final OnCategoryClick onCategoryClick;
 
-  CategoryView(this.onCategoryClick, {super.key});
+  const CategoryView(this.onCategoryClick, {super.key});
 
   @override
   Widget build(BuildContext context) {

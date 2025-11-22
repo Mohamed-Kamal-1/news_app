@@ -1,15 +1,14 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/core/color/app_color.dart';
 import 'package:news_app/presentation/newslist_details_screen/widgets/model_sheet_widget.dart';
 import 'package:news_app/presentation/newslist_details_screen/widgets/news_card.dart';
 
 import '../../domain/model/article/article.dart';
 
 class ArticlesListWidget extends StatelessWidget {
-  List<Article> articles;
+  final List<Article> articles;
+  final String? sourceId;
 
-  ArticlesListWidget(this.articles, {super.key});
+  const ArticlesListWidget(this.articles, {this.sourceId,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class ArticlesListWidget extends StatelessWidget {
             showModalBottomSheet(
               context: context,
               builder: (context) {
-                return ModelSheetWidget(article: articles[index],);
+                return ModelSheetWidget(article: articles[index],sourceId: sourceId,);
               },
             );
           },

@@ -7,8 +7,8 @@ import '../../../domain/model/article/article.dart';
 
 class ModelSheetWidget extends StatelessWidget {
   final Article article;
-
-  const ModelSheetWidget({super.key, required this.article});
+  final String? sourceId;
+  const ModelSheetWidget({super.key, required this.article,this.sourceId});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class ModelSheetWidget extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return FullViewArticle(article: article);
+                    return FullViewArticle(article: article,sourceId: sourceId,);
                   },
                 ),
               );
