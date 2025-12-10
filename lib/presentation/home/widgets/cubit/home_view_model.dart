@@ -20,8 +20,8 @@ class HomeViewModel extends Cubit<HomeState> {
   Future<void> searchForArticles(String searchKeyWord) async {
     if (!_hasMore || _isFeatching) return;
     _isFeatching = true;
-      emit(HomeSearchLoadingStat());
     try {
+      emit(HomeSearchLoadingStat());
       ArticleResponseModel responseModel = await articleRepo
           .getArticlesResponseForSearch(searchKeyWord, _pageSize, _currentPage);
 

@@ -26,7 +26,7 @@ class _SearchWidgetResultState extends State<SearchWidgetResult> {
   void initState() {
     super.initState();
     _scrollController = ScrollController();
-
+    widget.homeViewModel.searchForArticles(widget.searchText!);
     _scrollController.addListener(_onScroll);
     // _scrollController.addListener(() {
     //   if (_scrollController.position.pixels <=
@@ -40,7 +40,7 @@ class _SearchWidgetResultState extends State<SearchWidgetResult> {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent -200) {
       print('ok');
-      widget.homeViewModel.searchForArticles(widget.searchText!);
+
     }
   }
 
