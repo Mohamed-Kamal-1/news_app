@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/color/app_color.dart';
 import 'package:news_app/presentation/home/widgets/cubit/home_state.dart';
 import 'package:news_app/presentation/home/widgets/cubit/home_view_model.dart';
+import 'package:news_app/presentation/home/widgets/search_widget_result.dart';
 
 import '../../newslist_details_screen/ArticlesListWidget.dart';
 
@@ -16,7 +17,7 @@ class SearchWidget extends SearchDelegate {
     final theme = Theme.of(context);
 
     return theme.copyWith(
-      appBarTheme: theme.appBarTheme, // نفس الاب بار
+      appBarTheme: theme.appBarTheme,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.black45,
@@ -54,18 +55,7 @@ class SearchWidget extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    homeViewModel.searchForArticles(query);
-    return BlocBuilder<HomeViewModel, HomeState>(
-      bloc: homeViewModel,
-      builder: (BuildContext context, HomeState state) {
-        if (state is HomeSearchErrorState) {
-          return Center(child: Text('${state.message}  $query'));
-        } else if (state is HomeSearchSuccessState) {
-          return ArticlesListWidget(state.articles ?? []);
-        }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
+    return SearchWidgetResult(homeViewModel: homeViewModel,searchText: query,);
   }
 
   @override

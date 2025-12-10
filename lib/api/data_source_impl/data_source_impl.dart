@@ -25,8 +25,14 @@ class DataSourceImpl implements OnlineDataSource {
   @override
   Future<ArticleResponseModel> getArticlesResponseForSearch(
     String searchKeyWord,
+    int? page,
+    int? pageSize,
   ) async {
-    var response = await apiManger.searchForArticles(searchKeyWord);
+    var response = await apiManger.searchForArticles(
+      searchKeyWord,
+      pageSize: pageSize ?? 10,
+      page: page ?? 1,
+    );
     return response.getArticleResponse();
   }
 

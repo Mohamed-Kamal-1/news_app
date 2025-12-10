@@ -5,5 +5,7 @@ abstract interface class ArticleRepo {
 
   Future<ArticleResponseModel> getArticlesResponseForSearch(
     String searchKeyWord,
+    int? page,
+    int? pageSize,
   );
 }

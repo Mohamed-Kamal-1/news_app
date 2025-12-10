@@ -36,7 +36,8 @@ class ApiManger {
   static const String _baseUrl = 'https://newsapi.org/v2';
 
   // static const String _apiKey = '3f1fd1414c284e95bb0c3527a127fc73';
-  static const String _apiKey = 'e9b8dbc2094c48daa5c6f3859bc1d339';
+  //   static const String _apiKey = 'e9b8dbc2094c48daa5c6f3859bc1d339';
+    static const String _apiKey = '3f1fd1414c284e95bb0c3527a127fc73';
 
   Future<SourceResponseDto> getNewsSources(String categoryId) async {
     Map<String, String> parameter = {'apiKey': _apiKey, "category": categoryId};
@@ -63,8 +64,17 @@ class ApiManger {
     return articleResponse;
   }
 
-  Future<ArticleResponseDto> searchForArticles(String searchKeyWord) async {
-    Map<String, String> parameter = {'q': searchKeyWord, 'apiKey': _apiKey};
+  Future<ArticleResponseDto> searchForArticles(
+    String searchKeyWord, {
+    int? page,
+    int? pageSize,
+  }) async {
+    Map<String, dynamic> parameter = {
+      'q': searchKeyWord,
+      'apiKey': _apiKey,
+      'page': page,
+      'pageSize': pageSize,
+    };
     Response response = await dio.get(
       Endpoints.articlesApi,
       queryParameters: parameter,

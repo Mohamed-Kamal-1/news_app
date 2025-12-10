@@ -44,7 +44,7 @@ class _NewsListViewState extends State<NewsListView> {
             child: Text(state.errorMessage ?? "Something went wrong"),
           );
         } else if (state is NewsSuccessState) {
-          return ArticlesListWidget(state.articleList ?? [],sourceId: widget.sourceId,);
+          return ArticlesListWidget(articles: state.articleList ?? [],sourceId: widget.sourceId,);
         } else if (state is NewsLoadingState) {
           return Center(child: CircularProgressIndicator());
         }
